@@ -7,21 +7,22 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.io.Serial;
 
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable, KeyListener{
 
+    @Serial
     private static final long serialVersionUID = 1L;
-    public static int WIDTH = 480, HEIGTH = 480;
     public Player player;
     public World world;
 
     public Game() {
         this.addKeyListener(this); // Adicionamos eventos de teclado
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
-        this.player = new Player(40,40);
+        new SpriteSheet();
+        this.player = new Player(32,32);
         this.world = new World();
     }
 
@@ -39,11 +40,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
         }
         Graphics g = bs.getDrawGraphics();
 
-        g.setColor(Color.black);
-        g.fillRect(0, 0, WIDTH, HEIGTH);
-
-        player.render(g);
         world.render(g);
+        player.render(g);
         bs.show();
     }
 
@@ -53,6 +51,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
         frame.add(game);
         frame.setTitle("Mini zelda");
+        frame.setMinimumSize(new Dimension(640, 678));
 
         frame.pack(); // Empacotar o que foi feito antes e calcular o tamanho da janela
 

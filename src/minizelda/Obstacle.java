@@ -9,10 +9,15 @@ public class Obstacle extends Rectangle {
     }
 
     public void render(Graphics g){
-        g.setColor(Color.magenta);
+        //Tive que improvisar os blocos porque não conseguia importar do spriteSheet
+        g.setColor(new Color(52, 54, 56));
         g.fillRect(x, y, width, height);
-        g.setColor(Color.black);
+        g.setColor(Color.white);
+        g.drawOval(10+x, 15+y, 1, 1);
+        g.drawOval(15+x, 22+y, 1, 1);
+        g.drawOval(7+x, 3+y, 1, 1);
+        g.drawOval(2+x, 25+y, 1, 1);
+        g.drawOval(22+x, 5+y, 1, 1);
         g.drawRect(x, y, width, height);
-
     }
 }

@@ -20,7 +20,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
     public Game() {
         this.addKeyListener(this); // Adicionamos eventos de teclado
-        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        this.setPreferredSize(new Dimension(World.WIDTH, World.HEIGHT));
         new SpriteSheet();
         this.player = new Player(32,32);
         this.world = new World();
@@ -51,7 +51,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
         frame.add(game);
         frame.setTitle("Mini zelda");
-        frame.setMinimumSize(new Dimension(640, 678));
 
         frame.pack(); // Empacotar o que foi feito antes e calcular o tamanho da janela
 

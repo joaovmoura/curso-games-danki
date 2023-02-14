@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class SpriteSheet {
-    public static BufferedImage player_front;
+    public static BufferedImage player_front[];
     public static BufferedImage spriteSheet;
 
     public SpriteSheet() {
@@ -14,7 +14,11 @@ public class SpriteSheet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        player_front = SpriteSheet.getSprite(0, 11, 16, 16);
+
+        // Adicionando animação de corrida
+        player_front = new BufferedImage[2];
+        player_front[0] = SpriteSheet.getSprite(0, 11, 16, 16);
+        player_front[1] = SpriteSheet.getSprite(16, 11, 16, 16);
     }
 
     public static BufferedImage getSprite(int x, int y, int width, int height){

@@ -14,8 +14,10 @@ public class Player extends Rectangle {
 
     public int currentFrames = 0, targetFrames = 15;
 
-    public List<Bullet> bullets;
+    public static List<Bullet> bullets;
     public boolean shoot = false;
+
+    public int dir = 1;
 
     // Usamos a classe Rectangle porque ela já possui a mecânica da hitbox
     public Player(int x, int y) {
@@ -25,10 +27,14 @@ public class Player extends Rectangle {
     }
 
     public void tick() {
-        if(right && World.isFree(x+spd, y))
+        if(right && World.isFree(x+spd, y)){
             x+=spd;
-        else if(left && World.isFree(x-spd, y))
+            dir = 1;
+        }
+        else if(left && World.isFree(x-spd, y)){
             x-=spd;
+            dir = -1;
+        }
         if(down && World.isFree(x, y+spd))
             y+=spd;
         else if(up && World.isFree(x, y-spd))
@@ -47,18 +53,18 @@ public class Player extends Rectangle {
         //Sistema de tiro
         if(shoot){
             shoot = false;
-            bullets.add(new Bullet(x, y, 1));
+            bullets.add(new Bullet(x, y, dir));
         }
 
-        for (Bullet b: bullets) {
-            b.tick();
+        for (int i = 0; i< bullets.size(); i++) {
+            bullets.get(i).tick();
         }
     }
 
     public void render(Graphics g) {
         g.drawImage(SpriteSheet.player_front[currentAnimation], x, y, 32, 32, null);
-        for (Bullet b: bullets) {
-            b.render(g);
+        for (int i = 0; i< bullets.size(); i++) {
+            bullets.get(i).render(g);
         }
     }
 

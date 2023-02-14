@@ -1,8 +1,9 @@
 package minizelda;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends Rectangle {
 
@@ -13,10 +14,14 @@ public class Player extends Rectangle {
 
     public int currentFrames = 0, targetFrames = 15;
 
+    public List<Bullet> bullets;
+    public boolean shoot = false;
+
     // Usamos a classe Rectangle porque ela já possui a mecânica da hitbox
     public Player(int x, int y) {
         super(x, y, 32, 32);
         spd = 4;
+        bullets =  new ArrayList<>();
     }
 
     public void tick() {
@@ -38,10 +43,23 @@ public class Player extends Rectangle {
             if(currentAnimation == SpriteSheet.player_front.length)
                 currentAnimation = 0;
         }
+
+        //Sistema de tiro
+        if(shoot){
+            shoot = false;
+            bullets.add(new Bullet(x, y, 1));
+        }
+
+        for (Bullet b: bullets) {
+            b.tick();
+        }
     }
 
     public void render(Graphics g) {
         g.drawImage(SpriteSheet.player_front[currentAnimation], x, y, 32, 32, null);
+        for (Bullet b: bullets) {
+            b.render(g);
+        }
     }
 
     public boolean isMoving(){

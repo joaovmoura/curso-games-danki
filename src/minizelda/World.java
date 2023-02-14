@@ -16,18 +16,16 @@ public class World {
             obstacles.add(new Obstacle(j*32, 0));
         }
         for(int j = 0; j<20; j++){
-            obstacles.add(new Obstacle(j*32, 480-32));
+            obstacles.add(new Obstacle(j*32, HEIGHT-32));
         }
         for(int j = 0; j<15; j++){
             obstacles.add(new Obstacle(0, j*32));
         }
         for(int j = 0; j<15; j++){
-            obstacles.add(new Obstacle(640-32, j*32));
+            obstacles.add(new Obstacle(WIDTH-32, j*32));
         }
     }
     public void render(Graphics g){
-        g.setColor(new Color(0, 135, 13));
-        g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
         for(int i=0; i < obstacles.size(); i++){
             obstacles.get(i).render(g);
         }

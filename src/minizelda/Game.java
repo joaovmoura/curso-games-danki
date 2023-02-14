@@ -39,9 +39,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
             return;
         }
         Graphics g = bs.getDrawGraphics();
-
-        world.render(g);
+        g.setColor(new Color(0, 135, 13));
+        g.fillRect(0, 0, World.WIDTH, World.HEIGHT);
         player.render(g);
+        world.render(g);
         bs.show();
     }
 
@@ -93,6 +94,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
         else if(e.getKeyCode() == KeyEvent.VK_DOWN)
             player.down = true;
 
+        if(e.getKeyCode() == KeyEvent.VK_SPACE)
+            player.shoot = true;
     }
 
     @Override

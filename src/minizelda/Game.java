@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.io.Serial;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -15,7 +17,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
     @Serial
     private static final long serialVersionUID = 1L;
-    public Player player;
+    public static Player player;
     public World world;
 
     public Game() {
@@ -24,11 +26,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
         new SpriteSheet();
         this.player = new Player(32,32);
         this.world = new World();
+
     }
 
     public void tick() {
         // lógica do game
         player.tick();
+        world.tick();
     }
 
     public void render() {

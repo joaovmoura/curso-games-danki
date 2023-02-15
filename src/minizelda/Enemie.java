@@ -51,14 +51,15 @@ public class Enemie extends Rectangle {
     public void chasePlayer(){
         //Lógica de perseguir o player
         Player p = Game.player;
-        if(this.x < p.x)
+        //Pode ser adicionado um Random para randomizar a probabilidade de o player se mexer
+        if(this.x < p.x && World.isFree(x+spd, y))
             x+=spd;
-        else if(this.x > p.x)
+        else if(this.x > p.x && World.isFree(x-spd, y))
             x-=spd;
 
-        if(this.y < p.y)
+        if(this.y < p.y && World.isFree(x, y+spd))
             y+=spd;
-        else if(this.y > p.y)
+        else if(this.y > p.y && World.isFree(x, y-spd))
             y-=spd;
     }
 }

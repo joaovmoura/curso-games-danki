@@ -34,6 +34,7 @@ public class Enemie extends Rectangle {
             if(currentAnimation == SpriteSheet.player_front.length)
                 currentAnimation = 0;
         }
+        shooted();
     }
 
     public void render(Graphics g) {
@@ -43,8 +44,10 @@ public class Enemie extends Rectangle {
 
     public void shooted(){
         for(int i = 0; i<Player.bullets.size(); i++){
-            if(this.intersects(Player.bullets.get(i)))
+            if(this.intersects(Player.bullets.get(i))){
                 World.enemies.remove(this);
+//                TODO: Reset enemie
+            }
         }
     }
 

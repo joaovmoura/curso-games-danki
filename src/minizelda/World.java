@@ -28,6 +28,10 @@ public class World {
         enemies.add(new Enemie(60, 60));
     }
 
+    public static void resetEnemie() {
+        enemies.add(new Enemie(60, 60));
+    }
+
     public void render(Graphics g){
         for(int i=0; i < obstacles.size(); i++){
             obstacles.get(i).render(g);

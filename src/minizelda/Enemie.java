@@ -46,7 +46,7 @@ public class Enemie extends Rectangle {
         for(int i = 0; i<Player.bullets.size(); i++){
             if(this.intersects(Player.bullets.get(i))){
                 World.enemies.remove(this);
-//                TODO: Reset enemie
+                World.resetEnemie();
             }
         }
     }
